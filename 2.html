@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --main-color: #0F0F0F;
+            --secondary-color: #232D3F;
+            --event-color: #005B41;
+            --text-color: #008170;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #000000, #151515, #151515, #000000);
+            background-size: 400% 400%;
+            animation: gradient 5s ease infinite;
+            margin: 0;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0 50%;
+            }
+        }
+
+        #main-content {
+            font-family: "Comic Sans MS", cursive;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .loader-container {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            background: #000;
+            z-index: 1;
+        }
+
+        .spinner {
+            width: 64px;
+            height: 64px;
+            border: 8px solid;
+            border-color: var(--event-color) transparent var(--event-color) transparent;
+            border-radius: 50%;
+            animation: spin-anim 1.2s linear infinite;
+        }
+
+        @keyframes spin-anim {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .chat-container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .message-container {
+            font-family: "Comic Sans MS", cursive;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 105%;
+            max-width: 50%;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            position: relative;
+            word-wrap: break-word;
+            display: inline-block;
+            background-size: auto 100%;
+        }
+
+        .incoming .message {
+            border-bottom-left-radius: 2px;
+            margin-right: auto;
+            animation: slideInLeft 0.5s ease-in-out;
+        }
+
+        .outgoing .message {
+            text-align: right;
+            background-color: var(--text-color);
+            color: var(--secondary-color);
+            border-bottom-right-radius: 2px;
+            margin-left: auto;
+            animation: slideInRight 0.5s ease-in-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .message-text {
+            width: auto;
+            margin: 0;
+        }
+
+        #choice {
+            display: flex;
+            color: var(--event-color);
+            justify-content: space-around;
+        }
+
+        h1 {
+            font-family: "Comic Sans MS", cursive;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        a pre {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .button {
+            font-family: "Comic Sans MS", cursive;
+            background-color: var(--secondary-color);
+            border-radius: 20px;
+            padding: 20px;
+            border-style: solid;
+            width: min-content;
+        }
+
+        @media screen and (max-width: 400px) {
+            #choice{
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <title>About</title>
+</head>
+<body>
+<div class="loader-container">
+    <div class="spinner"></div>
+</div>
+<div id="main-content">
+    <h1>О сайте</h1>
+    <div class="chat-container" id="chat-container">
+    </div>
+    <div id="choice">
+        <a href="1.html">
+            <pre class="button">Вернуться на главную</pre>
+        </a>
+    </div>
+</div>
+<script>
+    const loaderContainer = document.querySelector('.loader-container');
+    const chatContainer = document.getElementById('chat-container');
+    const messages = [
+        "Что это?",
+        "Это сайт",
+        "О чём это?",
+        "Данный сайт посвящён персонажам мультфильмов",
+        "Когда это было сделано?",
+        "Данный сайт выпущен в раннем доступе в 2023 году"
+    ];
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loaderContainer.style.display = 'none';
+        }, 1000);
+
+        let currentIndex = 0;
+        const intervalId = setInterval(() => {
+            if (currentIndex < messages.length) {
+                const messageContainer = document.createElement('div');
+                const messageClass = currentIndex % 2 === 0 ? 'incoming' : 'outgoing';
+                messageContainer.className = `message-container ${messageClass}`;
+                messageContainer.innerHTML = `
+                    <div class="message">
+                        <p class="message-text">${messages[currentIndex]}</p>
+                    </div>
+                `;
+                chatContainer.appendChild(messageContainer);
+                currentIndex++;
+            } else {
+                clearInterval(intervalId);
+            }
+        }, 2500);
+    });
+</script>
+</body>
+</html>

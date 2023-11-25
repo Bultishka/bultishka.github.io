@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="лого%20nein.png">
+    <title>9</title>
+    <style>
+        :root {
+            --main-color: #000000;
+            --secondary-color: #2d2c18;
+            --event-color: #00fd69;
+            --text-color: #e7e7e7;
+        }
+
+        body{
+            background-image: url("9poster4.png");
+            background-size: 200% auto;
+            background-position: 0 0;
+            backdrop-filter: brightness(22%);
+            animation: rotateBackground 20s linear infinite; /* Добавляем бесконечную анимацию */
+            transition: background-position 0.5s linear;
+            margin: 0;
+        }
+
+        #main-content {
+            background-position: 0 0;
+            margin: 0;
+            flex-direction: column;
+            display: flex;
+        }
+
+        .loader-container {
+            width: 100%;
+            height: 100%;
+            top:0;
+            left:0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            background: #000;
+            z-index: 1;
+        }
+        .spinner {
+            width: 64px;
+            height: 64px;
+            border: 8px solid;
+            border-color: var(--event-color) transparent var(--event-color) transparent;
+            border-radius: 50%;
+            animation: spin-anim 1.2s linear infinite;
+        }
+
+        @keyframes spin-anim {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotateBackground {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 100% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .number-9 {
+            font-size: 5em;
+            font-family: 'Nosifer', cursive;
+            color: #ffffff;
+            text-align: left;
+            text-shadow: 0 0 10px #00ff6e, 0 0 40px #000000, 0 0 30px #00ff69;
+        }
+
+        #home-button {
+            font-family: "Roboto Light", cursive;
+            margin: 10px;
+            width: min-content;
+            background-color: var(--event-color);
+            color: var(--main-color);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #background {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            margin: 20px;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            grid-template-rows: repeat(auto-fit, 1fr);
+            font-size: 20px;
+            border-radius: 10px;
+        }
+
+        #sidestuff {
+            position: relative;
+            grid-row-start: 1;
+            grid-column-start: 1;
+            border-radius: 20px;
+            display: flex;
+            flex-grow: 1;
+            height: min-content;
+            color: var(--text-color);
+        }
+
+        #sidestuff img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        #sidestuff p {
+            font-family: "Roboto Light", cursive;
+            font-size: 1rem;
+        }
+
+        #text {
+            font-size: 1rem;
+            font-family: "Roboto Light", cursive;
+            color: var(--text-color);
+            grid-column-start: 2;
+            grid-row-start: 1;
+            margin: 20px;
+        }
+
+        #first{
+            display: flex;
+            gap: 10%;
+        }
+        table {
+            border-collapse: collapse;
+            width: auto;
+            font-size: 1rem;
+        }
+
+        th, td {
+            border: 1px solid var(--event-color);
+            padding: 8px;
+            text-align: left;
+        }
+
+        th, td {
+            background-color: var(--main-color);
+        }
+
+        #gallery {
+            font-family: "Roboto Light", cursive;
+            color: var(--text-color);
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            width: 50% !important;
+        }
+
+        #images {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            width: calc(100%) !important;
+        }
+
+        #images img {
+            border-radius: 10px;
+            width: calc(100%) !important;
+            opacity: 0;
+            animation: fadeInOut 3s ease-in-out forwards;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+
+            25%, 75% {
+                opacity: 1;
+            }
+        }
+
+        @media screen and (max-width: 1036px) {
+            #background {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            #gallery{
+                width: 100% !important;
+            }
+            #gallery{
+                align-items: center;
+                align-content: space-around;
+                height: 260px;
+            }
+            #first{
+                align-items: center;
+                align-content: stretch;
+                display: flex;
+                flex-direction: column;
+            }
+
+        }
+        @media screen and (min-width: 480px) and (max-width: 920px) {
+            #text{
+                overflow: hidden;
+                margin: 0;
+                font-size: small;
+            }
+            #first{
+                align-items: center;
+                align-content: stretch;
+                display: flex;
+                flex-direction: column;
+            }
+            #images{
+                align-content: center;
+                height: auto;
+            }
+            #gallery{
+                align-items: center;
+                align-content: space-around;
+                height: 300px;
+                overflow: auto;
+            }
+            #images img {
+                align-items: flex-start;
+                overflow: hidden;
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="loader-container">
+    <div class="spinner"></div>
+</div>
+<div id="main-content">
+    <button id="home-button" onclick="window.location.href='4.html'">На страницу мультфильма</button>
+    <div class="number-9">
+        <pre>   9</pre>
+    </div>
+    <div id="background">
+        <div id="sidestuff">
+            <img src="9char4.jpg" alt="9">
+        </div>
+        <div id="text">
+            <div id="first">
+                <div id="table">
+                    <h3>Общая информация</h3>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>Имя</th>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <th>Пол</th>
+                            <td>мужской</td>
+                        </tr>
+                        <tr>
+                            <th>Рост</th>
+                            <td>20.32 см</td>
+                        </tr>
+                        <tr>
+                            <th>Время пробуждения</th>
+                            <td>9-е сентября</td>
+                        </tr>
+                        <tr>
+                            <th>Актуальное состояние</th>
+                            <td>жив</td>
+                        </tr>
+                        <tr>
+                            <th>Актёр озвучки</th>
+                            <td>Константин Хабенский</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="gallery">
+                    <h2>Кадры с персонажем</h2>
+                    <div id="images">
+                        <img src="895.jpg" alt="stockimg">
+                    </div>
+                </div>
+            </div>
+            <p>9 - главный герой короткометражки 2005 года и фильма 2009 года.
+                Является последним созданием Ученого и наиболее близок к совершенству
+                из всех вязаных человечков. отличительная черта - застежка-молния.</p>
+            <h2>Характер</h2>
+            <p>9 - один из самых добродушных в группе, беспокоится о других больше, чем о себе.
+                В начале мультфильма он довольно наивен, но быстро учится преодолевать
+                этот недостаток и развивает свою интуицию.</p>
+            <h2>Описание</h2>
+            <h3>9 (2005)</h3>
+            <p>Явных отличий между ним из короткометражки и из фильма не так много.
+                В короткометражке он немой, а его рогожа кажется более темной, но в остальном
+                существенных отличий нет. Он сохранил большую часть своего характера,
+                в первую очередь любопытство. В короткометражном фильме он является учеником 5.
+                9 оказывается единственным выжившим из вязаных человечков и полагается на свое
+                окружение и смекалку, которые помогут ему уничтожить Зверя и отомстить за своих
+                погибших товарищей.</p>
+            <h3>9 (2009)</h3>
+            <p>В фильме 2009 года 9 появляется в виде коричневого вязаного человечка из мешковины.
+                Спереди у него золотисто-желтая молния, застегивающаяся на животе, а на спине начертана
+                цифра "9". Изначально у 9 не было голосового аппарата, из-за чего он был немым. Однако
+                благодаря 2 это было исправлено.</p>
+        </div>
+    </div>
+</div>
+<script>
+    // Список изображений
+    const imageSources = [
+        "195.jpg",
+        "295.jpeg",
+        "395.jpg",
+        "595.jpg",
+        "695.webp",
+        "795.jpg",
+        "895.jpg"
+    ];
+
+    var curimg = 0;
+
+    // Функция для выбора случайного изображения
+    function getRandomImage() {
+        curimg += 1;
+        return imageSources[curimg%imageSources.length];
+    }
+
+    function updateImage() {
+        const imagesContainer = document.getElementById("images");
+        const newImageSrc = getRandomImage();
+
+        const newImage = document.createElement("img");
+        newImage.src = newImageSrc;
+        newImage.alt = "Random Image";
+
+        imagesContainer.innerHTML = "";
+        imagesContainer.appendChild(newImage);
+    }
+
+    setInterval(updateImage, 3000);
+
+    const loaderContainer = document.querySelector('.loader-container');
+    const content = document.querySelector('#main-content');
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loaderContainer.style.display = 'none';
+        }, 1000);
+    });
+
+
+</script>
+</body>
+</html>

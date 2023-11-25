@@ -1,0 +1,21 @@
+
+body{
+    background-color: black;
+    background-image: url("bg5.png");
+    background-size: cover;
+    backdrop-filter: brightness(9%);
+    margin: 0 0 0 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.number-9 {
+    font-size: 5em;
+    font-family: 'Nosifer', cursive; /* Используем шрифт Nosifer */
+    color: #ffffff; /* неоново-зелёный цвет */
+    text-align: center;
+    text-shadow: 0 0 10px #00ff6e, 0 0 40px #000000, 0 0 30px #00ff69; /* свечение неона */
+    transform: skew(-5deg, 0); /* наклон на -5 градусов по оси X */
+}
