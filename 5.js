@@ -10,7 +10,6 @@ const imageSources = [
 
 var curimg = 0;
 
-// Функция для выбора случайного изображения
 function getRandomImage() {
     curimg += 1;
     return imageSources[curimg%imageSources.length];
